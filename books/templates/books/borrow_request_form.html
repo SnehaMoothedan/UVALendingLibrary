@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Request to Borrow "{{ book.title }}"</h2>
+
+    <!-- Display the book image if it exists -->
+    {% if book.image %}
+        <img src="{{ book.image.url }}" alt="{{ book.title }}" style="max-width: 200px;">
+    {% else %}
+        <p>No image available for this book.</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }} 
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <br>
+    <a href="{% url 'book_detail' book_uuid=book.uuid %}"><button type="button">Back to Book Details</button></a>
+{% endblock %}

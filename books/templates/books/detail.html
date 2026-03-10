@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2 class="mt-5">{{ book.title }}</h2>
+  {% if book.image %}
+    <img src="{{ book.image.url }}" alt="{{ book.title }}" style="max-width:300px;">
+  {% endif %}
+  <p><strong>Author:</strong> {{ book.author }}</p>
+  <p><strong>Genre:</strong> {{ book.genre }}</p>
+  <p><strong>Description:</strong> {{ book.description }}</p>
+  <p><strong>Uploaded by:</strong> {{ book.user.email }}</p>
+  {% if book.current_borrower %}
+    <p><strong>Borrowed by:</strong> {{ book.current_borrower }}</p>
+  {% else %}
+    <p><em>This book is available for borrowing.</em></p>
+  {% endif %}
+
+  <div class="mt-3 mb-5">
+    <a href="{% url 'choose' %}" class="btn btn-secondary">Back</a>
+  </div>
+
+{% endblock %}

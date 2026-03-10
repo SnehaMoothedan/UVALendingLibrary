@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Container for your Lending Policy plus Library Swap ToS content -->
+<div class="terms-container" style="max-width: 960px; margin: 2rem auto; padding: 1rem; line-height: 1.5;">
+  <!-- The Library Swap-style Terms of Service content -->
+  <h1 class="mt-3">Library Swap Terms of Service</h1>
+
+  <!-- Table of Contents for quick navigation -->
+  <div class="toc">
+    <h2>In this article</h2>
+    <ul>
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#library-swap-tos">Library Swap Terms of Service</a></li>
+      <li><a href="#a-definitions">A. Definitions</a></li>
+      <li><a href="#b-account-terms">B. Account Terms</a></li>
+      <li><a href="#c-lending-policies">C. Lending Policies</a></li>
+      <li><a href="#d-use-of-the-service">D. Use of the Service</a></li>
+      <li><a href="#e-intellectual-property">E. Intellectual Property</a></li>
+      <li><a href="#f-disclaimers">F. Disclaimers and Limitations</a></li>
+      <li><a href="#g-privacy-and-data">G. Privacy and Data</a></li>
+      <li><a href="#h-changes">H. Changes to These Terms</a></li>
+      <li><a href="#i-governing-law">I. Governing Law</a></li>
+      <li><a href="#j-contact-us">J. Contact Us</a></li>
+    </ul>
+  </div>
+
+  <p>Thank you for using Library Swap! We are happy you are here. Please read this Terms of Service agreement.</p>
+
+  <!-- Summary section -->
+  <h2 id="summary">Summary</h2>
+  <p>
+    Below is a brief overview of important points. For the full legal details,
+    refer to the sections that follow.
+  </p>
+  <ul>
+    <li>Borrowed books have a total of 6 month Lending Period.</li>
+    <li>Users are responsible for loss or damage to items.</li>
+    <li>Penalties may apply if items are not returned by their due date.</li>
+    <li>Librarians and Patrons must log in via Google; Admins use /admin.</li>
+  </ul>
+
+  <!-- Full Library Swap ToS -->
+  <h2 id="library-swap-tos">Library Swap Terms of Service</h2>
+  <p><em>Last Updated: [April, 2025]</em></p>
+  <p>
+    By accessing or using the Library Swap platform (“Service”), you agree to be bound by
+    these Terms of Service (“Terms”). If you do not agree to these Terms, please refrain
+    from using our Service.
+  </p>
+
+  <!-- Section A -->
+  <h3 id="a-definitions">A. Definitions</h3>
+  <ol>
+    <li><strong>"Library Swap," “we,” “us,” or “our”</strong> refers to the Library Swap platform.</li>
+    <li><strong>"User," “you,” or “your”</strong> refers to any individual accessing our Service.</li>
+    <li><strong>"Item"</strong> means any book, media, or other item listed on the platform.</li>
+    <li><strong>"Lending Period"</strong> is the standard 6 months allowed for borrowing a book.</li>
+    <li><strong>"Late Fee"</strong> is a fee for overdue items.</li>
+    <li><strong>"Google Account"</strong> is the external authentication used by Patrons and Librarians.</li>
+  </ol>
+
+  <!-- Section B -->
+  <h3 id="b-account-terms">B. Account Terms</h3>
+  <ol>
+    <li><strong>Eligibility:</strong> You must be at least 18 (or have guardian permission) to use the Service.</li>
+    <li><strong>Account Registration:</strong> Patrons/Librarians use Google login; no Django admin login permitted.</li>
+    <li><strong>Django Admin Accounts:</strong> Only for designated system administrators via /admin.</li>
+  </ol>
+
+  <!-- Section C -->
+  <h3 id="c-lending-policies">C. Lending Policies</h3>
+  <ol>
+    <li><strong>Borrowing Items:</strong>
+      <ul>
+        <li>Lending Period is 6 months in total unless renewed or otherwise stated.</li>
+        <li>Requests must be approved by a Librarian.</li>
+      </ul>
+    </li>
+    <li><strong>Returns:</strong>
+      <ul>
+        <li>Items must be returned by the due date to avoid Late Fees.</li>
+      </ul>
+    </li>
+    <li><strong>Loss or Damage:</strong> You are responsible for any loss or damage; replacement fees may apply.</li>
+  </ol>
+
+  <!-- Section D -->
+  <h3 id="d-use-of-the-service">D. Use of the Service</h3>
+  <ol>
+    <li><strong>Anonymous Users:</strong> May browse public items/collections only.</li>
+    <li><strong>Patrons:</strong> Can borrow items, create public collections, rate/comment on items, etc.</li>
+    <li><strong>Librarians:</strong> Can add/edit/delete items/collections, approve borrowing, etc.</li>
+    <li><strong>Terminations/Suspensions:</strong> We may restrict your account for Terms violations.</li>
+  </ol>
+
+  <!-- Section E -->
+  <h3 id="e-intellectual-property">E. Intellectual Property</h3>
+  <ol>
+    <li><strong>Ownership:</strong> All Library Swap trademarks, logos, etc. remain the property of Library Swap.</li>
+    <li><strong>User Content:</strong> By posting, you grant Library Swap a license to display and distribute that content.</li>
+  </ol>
+
+  <!-- Section F -->
+  <h3 id="f-disclaimers">F. Disclaimers and Limitations</h3>
+  <ol>
+    <li><strong>Disclaimer of Warranties:</strong> The Service is provided “as is.” No guarantee of error-free operation.</li>
+    <li><strong>Limitation of Liability:</strong> Library Swap is not liable for indirect or consequential damages.</li>
+    <li><strong>Class Project Notice:</strong> If this is a class project, do not submit real confidential info; it is unmonitored.</li>
+  </ol>
+
+  <!-- Section G -->
+  <h3 id="g-privacy-and-data">G. Privacy and Data</h3>
+  <ol>
+    <li><strong>Data Collection:</strong> We collect only what is necessary for service functionality.</li>
+    <li><strong>Cloud Storage:</strong> Amazon S3 is used for file storage, with no local storage on Heroku.</li>
+  </ol>
+
+  <!-- Section H -->
+  <h3 id="h-changes">H. Changes to These Terms</h3>
+  <p>We may update these Terms at any time. Continued use after changes indicates acceptance.</p>
+
+  <!-- Section I -->
+  <h3 id="i-governing-law">I. Governing Law</h3>
+  <p>These Terms shall be governed by the laws of UVA.</p>
+
+  <!-- Section J -->
+  <h3 id="j-contact-us">J. Contact Us</h3>
+  <p>If you have questions or concerns, please contact us through our chat system.</strong>.</p>
+
+  <div class="mt-5 mb-3">
+    <a href="{% url 'choose' %}" class="btn btn-secondary">Back</a>
+  </div>
+
+</div>
+{% endblock %}

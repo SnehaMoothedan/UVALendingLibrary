@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-sm mt-5">
+      <div class="card-body">
+        <h3 class="card-title text-center mb-4">Welcome to Library Swap</h3>
+        <p class="card-text text-center">Sign in using your Google account to get started.</p>
+        <div class="d-grid gap-2">
+          {% load socialaccount %}
+          <a href="{% provider_login_url 'google' %}" class="btn btn-danger btn-lg">
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" class="me-2">
+            Sign in with Google
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

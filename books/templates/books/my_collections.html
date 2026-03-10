@@ -1,0 +1,22 @@
+{# books/templates/books/my_collections.html #}
+{% extends "base.html" %}
+{% block content %}
+  <h2 class="mt-4 mb-3">My Collections</h2>
+
+  {% if collections %}
+    <div class="list-group">
+      {% for col in collections %}
+        <a href="{% url 'collection_detail' col.pk %}"
+           class="list-group-item list-group-item-action">
+          {{ col.title }} &mdash; {{ col.visibility|capfirst }}
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-muted">You haven’t created any collections yet.</p>
+  {% endif %}
+
+  <div class="mt-4">
+    <a href="{% url 'choose' %}" class="btn btn-secondary">Back to Dashboard</a>
+  </div>
+{% endblock %}

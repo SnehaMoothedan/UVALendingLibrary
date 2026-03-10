@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2 class="mt-4">My Books</h2>
+  
+  {% if books %}
+    <div class="book-list">
+      {% for book in books %}
+        <div class="book-item mb-4 p-3 border">
+          {% if book.image %}
+            <img src="{{ book.image.url }}" alt="{{ book.title }}" class="img-fluid mb-2" style="max-width:200px;">
+          {% endif %}
+          <h4>{{ book.title }}</h4>
+          <p><strong>Author:</strong> {{ book.author }}</p>
+          <p><strong>Genre:</strong> {{ book.genre }}</p>
+          <p><strong>Description:</strong> {{ book.description }}</p>
+          <p>
+            <strong>Availability:</strong>
+            {% if book.is_available %}Available{% else %}Borrowed{% endif %}
+          </p>
+          <p><strong>Location:</strong> {{ book.location }}</p>
+          <!-- Action button -->
+          <a href="{% url 'book_reviews_list' book.uuid %}" class="btn btn-warning btn-sm">View reviews</a>
+          <!-- Edit button -->
+          <a href="{% url 'edit_book'   book.uuid %}" class="btn btn-primary btn-sm me-2">Edit Book</a>   
+          <!-- Delete button -->
+          <a href="{% url 'delete_book' book.uuid %}" class="btn btn-danger btn-sm">Delete Book</a>      
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>You have not listed any books for lending.</p>
+  {% endif %}
+  
+  <a href="{% url 'choose' %}" class="btn btn-secondary mt-3 mb-5">Back</a>
+{% endblock %}

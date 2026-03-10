@@ -1,0 +1,31 @@
+/* static/css/books.css */
+.book-card {
+    min-width: 240px;              /* keeps cards from shrinking too much */
+  }
+  
+  .book-cover {
+    height: 200px;                 /* <<— uniform size  */
+    width: 100%;
+    object-fit: cover;             /* crops over‑large images neatly   */
+  }
+  
+  .book-meta { font-size: 0.9rem; }
+
+/* style the native file-upload button like a Bootstrap primary btn */
+input[type="file"]::-webkit-file-upload-button {
+  background-color: #0d6efd;
+  color: #fff;
+  border: none;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+}
+input[type="file"]::-moz-file-upload-button {
+  background-color: #0d6efd;
+  color: #fff;
+  border: none;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+}
+
+
+  

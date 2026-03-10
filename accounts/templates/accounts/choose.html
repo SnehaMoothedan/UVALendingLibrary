@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 class="mt-4 mb-3 text-center">Library Swap Dashboard</h2>
+  <div class="text-center mb-4">
+    <h4 class="mb-3">What would you like to do?</h4>
+  </div>
+  <div class="row g-4">
+    {% if user.is_superuser %}
+      <!-- Show a message to superusers instead of the buttons -->
+      <div class="col-12 text-center">
+        <p class="text-danger">You are a Django administrator. You cannot perform these actions on the app.</p>
+      </div>
+    {% else %}
+      <!-- BORROW TAB -->
+      <div class="col-md-4">
+        <a href="{% url 'borrow_page' %}" class="text-decoration-none">
+          <div class="card bg-dark text-white shadow-sm border-0 d-flex flex-column justify-content-center align-items-center" style="height:180px;border-radius:.75rem;">
+            <h4 class="fw-bold mb-1 d-flex flex-column align-items-center"><i class="bi bi-book fs-3 mb-1"></i>Borrow</h4>
+            <p class="mb-0 small text-center">Browse books and collections.</p>
+          </div>
+        </a>
+        <div class="d-flex justify-content-center gap-2 mt-2">
+          <a href="{% url 'borrow_page' %}" class="btn btn-outline-primary btn-sm">Browse Books</a>
+          <a href="{% url 'list_collection_page' %}" class="btn btn-outline-primary btn-sm">Browse Collections</a>
+        </div>
+      </div>
+
+      <!-- CREATE TAB -->
+      <div class="col-md-4">
+        <a href="{% url 'provide_page' %}" class="text-decoration-none">
+          <div class="card bg-dark text-white shadow-sm border-0 d-flex flex-column justify-content-center align-items-center" style="height:180px;border-radius:.75rem;">
+            <h4 class="fw-bold mb-1 d-flex flex-column align-items-center"><i class="bi bi-pencil-square fs-3 d-block mb-1"></i>Create</h4>
+            <p class="mb-0 small text-center">Provide books or start a collection.</p>
+          </div>
+        </a>
+        <div class="d-flex justify-content-center gap-2 mt-2">
+          <a href="{% url 'provide_page' %}" class="btn btn-outline-primary btn-sm">Provide Books</a>
+          <a href="{% url 'create_collection_page' %}" class="btn btn-outline-primary btn-sm">Create Collection</a>
+        </div>
+      </div>
+
+      <!-- MANAGE TAB -->
+      <div class="col-md-4">
+        <a href="{% url 'list_my_borrow_request_page' %}" class="text-decoration-none">
+          <div class="card bg-dark text-white shadow-sm border-0 d-flex flex-column justify-content-center align-items-center" style="height:180px;border-radius:.75rem;">
+            <h4 class="fw-bold mb-1 d-flex flex-column align-items-center"><i class="bi bi-tools fs-3 mb-1"></i>Manage</h4>
+            <p class="mb-0 small text-center">Handle requests &amp; your inventory.</p>
+          </div>
+        </a>
+        <div class="row g-2 mt-2">
+          {% if user.role == 'provider' %}
+            <div class="col-md-6">
+              <div class="d-grid gap-2">
+                <a href="{% url 'list_borrow_request_page' %}" class="btn btn-outline-primary btn-sm w-100">Book Requests to Me</a>
+                <a href="{% url 'list_collection_request_page' %}" class="btn btn-outline-primary btn-sm w-100">Collection Requests to Me</a>
+                <a href="{% url 'manage_provider_requests' %}" class="btn btn-outline-primary btn-sm w-100">Grant Provider Access</a>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="d-grid gap-2">
+                <a href="{% url 'list_my_borrow_request_page' %}" class="btn btn-outline-primary btn-sm w-100">My Book Requests</a>
+                <a href="{% url 'list_my_collection_request_page' %}" class="btn btn-outline-primary btn-sm w-100">My Collection Requests</a>
+                <a href="{% url 'my_books' %}" class="btn btn-outline-primary btn-sm w-100">My Books</a>
+                <a href="{% url 'list_my_collections' %}" class="btn btn-outline-primary btn-sm w-100">My Collections</a>
+              </div>
+            </div>
+          {% else %}
+            <div class="col-md-6 offset-md-3">
+              <div class="d-grid gap-2">
+                <a href="{% url 'list_my_borrow_request_page' %}" class="btn btn-outline-primary btn-sm w-100">My Book Requests</a>
+                <a href="{% url 'list_my_collection_request_page' %}" class="btn btn-outline-primary btn-sm w-100">My Collection Requests</a>
+                <a href="{% url 'list_my_collections' %}" class="btn btn-outline-primary btn-sm w-100">My Collections</a>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

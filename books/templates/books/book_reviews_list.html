@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Reviews for "{{ book.title }}"</h2>
+
+{% if reviews %}
+  <ul>
+    {% for review in reviews %}
+      <li>
+        <strong>{{ review.reviewer.username }}</strong> rated it {{ review.rating }}/5<br>
+        <p>{{ review.comment }}</p>
+        <hr>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No reviews yet.</p>
+{% endif %}
+
+<a href="{{ prev_url }}" class="btn btn-secondary mt-3">Back to Books</a>
+{% endblock %}

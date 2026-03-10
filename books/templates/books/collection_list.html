@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2 class="mt-4">All Collections</h2>
+  <ul class="list-group">
+    {% for collection in collections %}
+      <li class="list-group-item">
+        <a href="{% url 'collection_detail' collection.pk %}">
+          <strong>{{ collection.title }}</strong> — {{ collection.visibility }}
+        </a>
+        {% if not collection.can_access %}
+            <a href="{% url 'collection_access_request' collection.pk %}" class="btn btn-primary btn-sm float-end">
+              Request Access
+            </a>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li class="list-group-item">No collections found.</li>
+    {% endfor %}
+
+    <div class="mt-3">
+      <!-- Back to Choose -->
+      <a href="{% url 'choose' %}" class="btn btn-secondary">
+        Back
+      </a>
+    </div>
+
+  </ul>
+{% endblock %}

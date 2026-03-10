@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2 class="mt-4">Review: {{ book.title }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Submit Review</button>
+    <a href="{% url 'list_borrow_request_page' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+{% endblock %}

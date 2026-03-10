@@ -1,0 +1,33 @@
+/* static/css/github_style.css */
+/* GitHub-Inspired Colors */
+body {
+    background-color: #f6f8fa; /* GitHub-like background */
+    color: #24292e;           /* Dark text */
+  }
+  
+  /* Dark navbar background */
+  .navbar {
+    background-color: #24292e !important;
+  }
+  
+  /* Navbar brand + nav links in white */
+  .navbar .navbar-brand,
+  .navbar .nav-link {
+    color: #ffffff !important;
+  }
+  
+  /* Hover color for nav links */
+  .navbar .nav-link:hover {
+    color: #0366d6 !important; /* GitHub link color */
+  }
+  
+  /* Example GitHub-like button override */
+  .btn-primary {
+    background-color: #0366d6;
+    border-color: #0366d6;
+  }
+  .btn-primary:hover {
+    background-color: #0356b6;
+    border-color: #0356b6;
+  }
+  

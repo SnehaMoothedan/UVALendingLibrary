@@ -1,0 +1,9 @@
+venv/
+.env
+*.pyc
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+*.DS_Store
+books/migrations/0001_initial.py

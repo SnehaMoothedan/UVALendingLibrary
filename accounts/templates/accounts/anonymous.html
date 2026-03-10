@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Anonymous</h2>
+  <p>This page is for users who want to remain anonymous.</p>
+  <div style="text-align: right; font-size: small; margin-bottom: 10px;">
+  <!-- Anonymous users can browse books and public collections -->
+    <div class="d-flex gap-2 mt-3">
+      <form method="GET" action="{% url 'borrow_page' %}">
+        <button type="submit" class="btn btn-success">Browse Books</button>
+      </form>
+      <!-- <form method="GET" action="{% url 'list_collection_page' %}">
+        <button type="submit" class="btn btn-primary"> Browse Collections</button>
+      </form> -->
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-secondary" onclick="window.history.back();">
+    Back
+  </button>
+  
+{% endblock %}

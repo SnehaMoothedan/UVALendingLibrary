@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2 class="mt-4">Borrow Books</h2>
+<p>This page is for users who want to borrow books.</p>
+<div class="text-end small mb-2">
+  Logged in as: {{ request.user.email }}
+</div>
+
+<!-- Search form -->
+<form method="get" action="">
+  <div class="input-group mb-3">
+    <input type="text" name="q" value="{{ query }}" class="form-control"
+           placeholder="Search by title, author, or genre">
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+  </div>
+</form>
+
+<!-- List of books -->
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+  {% for book in page_obj %}
+    <div class="col">
+      <div class="card h-100 shadow-sm border-0 book-card">
+
+        {# --- Book cover --- #}
+        {% if book.image %}
+          <img src="{{ book.image.url }}" class="card-img-top book-cover" alt="{{ book.title }}">
+        {% else %}
+          <img src="{% static 'img/placeholder_cover.png' %}" class="card-img-top book-cover" alt="No cover available">
+        {% endif %}
+
+        {# --- Meta data --- #}
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title text-center fw-bold">{{ book.title }}</h5>
+
+          <p class="card-text book-meta mb-1"><strong>Author:</strong> {{ book.author }}</p>
+          <p class="card-text book-meta mb-1"><strong>Genre:</strong> {{ book.genre }}</p>
+          <p class="card-text book-meta mb-1"><strong>Description:</strong> {{ book.description|truncatewords:20 }}</p>
+          <p class="card-text book-meta mb-1"><strong>Uploaded&nbsp;by:</strong> {{ book.user.username }} {% if user.is_authenticated %} ({{book.uploader_email}}) {% endif %}</p>
+          <p class="card-text book-meta mb-1">
+            <strong>Average rating:</strong>
+            {% if book.avg_rating %}
+              {{ book.avg_rating|floatformat:1 }}
+            {% else %}
+              No reviews yet
+            {% endif %}
+          </p>
+          <p class="card-text book-meta mb-1">
+            <strong>Availability:</strong>
+            {% if book.is_available %}Available{% else %}Borrowed{% endif %}
+          </p>
+          <p class="card-text book-meta mb-3"><strong>Location:</strong> {{ book.location }}</p>
+
+          {# --- Action button --- #}
+          <a href="{% url 'book_reviews_list' book.uuid %}"
+              class="btn btn-primary mt-auto">
+              View reviews
+          </a>
+          {% if book.user != request.user %}
+            <a href="{% url 'request_borrow_book' book.uuid %}"
+              class="btn btn-primary {% if not book.is_available %}disabled{% endif %}"
+              rel="noopener noreferrer"
+              >
+              Request to Borrow
+            </a>
+            {% if user.is_authenticated %}
+              <a
+                href="https://outlook.office.com/mail/deeplink/compose?to={{ book.user.email|urlencode }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+              >
+                Email Provider
+              </a>
+            {% endif %}
+          {% else %}
+            <p class="text-muted text-center mt-auto">You uploaded this book. You cannot borrow it.</p>
+          {% endif %}
+          
+        </div>  {# /card-body #}
+
+      </div>  {# /card #}
+    </div>    {# /col #}
+  {% empty %}
+    <p>No books found.</p>
+  {% endfor %}
+</div>  {# /row #}
+
+<nav aria-label="Page navigation" class="mt-4">
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?q={{ query }}&page=1">&laquo; First</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?q={{ query }}&page={{ page_obj.previous_page_number }}">Previous</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link">&laquo; First</span></li>
+      <li class="page-item disabled"><span class="page-link">Previous</span></li>
+    {% endif %}
+
+    <li class="page-item active"><span class="page-link">{{ page_obj.number }}</span></li>
+
+    {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?q={{ query }}&page={{ page_obj.next_page_number }}">Next</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link">Next</span></li>
+      <li class="page-item disabled"><span class="page-link">Last &raquo;</span></li>
+    {% endif %}
+  </ul>
+</nav>
+
+<div class="mt-3 mb-5">
+  <a href="{% url 'choose' %}" class="btn btn-secondary">Back</a>
+</div>
+{% endblock %}
