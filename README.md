@@ -2,7 +2,12 @@
 
 Link: https://projectb18-63ef789a48c4.herokuapp.com/
 
-
+Contributers: 
+    Sneha Moothedan (Scrum Master)
+    Anthony Jiang (Software Architect)
+    Rythama Chevendra (Devops Manager)
+    Kansal Lakshay (Requirements Manager)
+    Md Mominur Rahman (Testing Manager)
 
 RESOURCES USED / CITATIONS:
 
